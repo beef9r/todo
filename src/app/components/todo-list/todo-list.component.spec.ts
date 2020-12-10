@@ -4,6 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { TodoListComponent } from './todo-list.component';
 
 describe('TodoListComponent', () => {
@@ -19,6 +20,7 @@ describe('TodoListComponent', () => {
         MatInputModule,
         MatIconModule,
         MatButtonModule,
+        FormsModule,
       ],
     }).compileComponents();
   });

@@ -16,14 +16,13 @@ import { Subscription } from 'rxjs';
 })
 export class TodoListComponent implements OnDestroy {
   subscription: Subscription;
-  new: string;
+  adding: string;
   editing: string;
   todoItems: ListItem[] = [];
   doneItems: ListItem[] = [];
 
   constructor(private todoService: TodoService) {
     this.subscription = this.todoService.onChange().subscribe((obj) => {
-      console.log(obj);
       if (obj) {
         this.todoItems = obj.todos;
         this.doneItems = obj.dones;
@@ -56,16 +55,16 @@ export class TodoListComponent implements OnDestroy {
   }
 
   add(event: Event): void {
-    if (this.new.trim().length === 0) {
+    if (this.adding.trim().length === 0) {
       return;
     }
     const newItem: ListItem = {
       uuid: uuidv4(),
-      text: this.new,
+      text: this.adding,
       editing: false,
     };
     this.todoItems.push(newItem);
-    this.new = '';
+    this.adding = '';
     this.todoService.change(this.todoItems, this.doneItems);
   }
 

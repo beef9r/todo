@@ -12,8 +12,8 @@
       <mat-form-field>
         <mat-label>Neue Aufgabe</mat-label>
         <input
-          [(ngModel)]="new"
-          (keyup.enter)="new = ''"
+          [(ngModel)]="adding"
+          (keyup.enter)="adding = ''"
           class="textfield new"
           name="new"
           matInput

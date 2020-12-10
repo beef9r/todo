@@ -3,6 +3,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MatTabsModule } from '@angular/material/tabs';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -12,7 +14,13 @@ describe('AppComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [AppComponent],
-        imports: [NoopAnimationsModule, MatButtonModule, MatIconModule],
+        imports: [
+          NoopAnimationsModule,
+          MatButtonModule,
+          MatIconModule,
+          MatTabsModule,
+          AppRoutingModule,
+        ],
       }).compileComponents();
     })
   );
