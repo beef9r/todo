@@ -1,0 +1,19 @@
+<div class="flex-center">
+  <h1 class="mat-h1">Willkommen zu Ihrer To do Liste</h1>
+  <h3 class="mat-h3">
+    Wechseln Sie zur Aufgabenliste, um Ihre Aufgaben zu verwalten.
+  </h3>
+
+  <p *ngIf="todoCount > 0">
+    Sie haben aktuell <span class="red">{{ todoCount }}</span> unerledigte
+    Aufgaben.
+  </p>
+  <p></p>
+  <p *ngIf="todoCount > 0">
+    Klicken Sie hier zum Entfernen aller offenen und erledigten Aufgaben:
+
+    <button mat-icon-button (click)="clear()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </p>
+</div>

@@ -1,0 +1,16 @@
+<div class="container">
+  <nav mat-tab-nav-bar mat-align-tabs="center">
+    <a
+      mat-tab-link
+      *ngFor="let link of links"
+      (click)="activeLink = link.name"
+      [active]="activeLink === link.name"
+      [routerLink]="['/' + link.name]"
+    >
+      {{ link.displayText }}
+    </a>
+  </nav>
+  <div class="center">
+    <router-outlet></router-outlet>
+  </div>
+</div>

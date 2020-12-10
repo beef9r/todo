@@ -1,0 +1,86 @@
+<div class="todo-list-container todo">
+  <h2>offen ({{ todoItems.length }})</h2>
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todoItems"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="list todo"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <form (submit)="add($event)" class="new-form">
+      <mat-form-field>
+        <mat-label>Neue Aufgabe</mat-label>
+        <input
+          [(ngModel)]="new"
+          (keyup.enter)="new = ''"
+          class="textfield new"
+          name="new"
+          matInput
+          maxlength="100"
+        />
+      </mat-form-field>
+    </form>
+    <span *ngIf="todoItems.length <= 0" class="empty-placeholder"
+      >Fügen Sie neue Aufgaben hinzu</span
+    >
+    <div
+      class="todo-list-item"
+      *ngFor="let item of todoItems; let i = index"
+      cdkDrag
+    >
+      <div *ngIf="!item.editing">
+        <span>
+          {{ item.text }}
+        </span>
+        <mat-icon (click)="startEditing(item)">edit</mat-icon>
+      </div>
+      <form *ngIf="item.editing" (submit)="edit($event, item)">
+        <mat-form-field>
+          <mat-label>Bearbeiten</mat-label>
+          <input
+            [(ngModel)]="editing"
+            (keyup.enter)="edit($event, item)"
+            (keyup.escape)="cancelEditing(item)"
+            class="textfield"
+            name="edit"
+            matInput
+            maxlength="100"
+          />
+          <span mat-icon-button matSuffix (click)="cancelEditing(item)">
+            <mat-icon>close</mat-icon>
+          </span>
+        </mat-form-field>
+      </form>
+      <mat-icon (click)="delete(todoItems, i)">close</mat-icon>
+    </div>
+  </div>
+</div>
+
+<div class="todo-list-container done">
+  <h2>erledigt ({{ doneItems.length }})</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="doneItems"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="list done"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <span *ngIf="doneItems.length <= 0" class="empty-placeholder"
+      >Noch keine Aufgaben erledigt :-(</span
+    >
+    <div
+      class="todo-list-item"
+      *ngFor="let item of doneItems; let i = index"
+      cdkDrag
+    >
+      <span
+        >{{ item.text }}
+        <mat-icon class="checkmark"> checkmark </mat-icon>
+      </span>
+      <mat-icon (click)="delete(doneItems, i)">close</mat-icon>
+    </div>
+  </div>
+</div>
